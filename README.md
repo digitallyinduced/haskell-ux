@@ -16,7 +16,7 @@ Good error messages should be **clear**, **actionable**, and **practical**. A gr
 
 ## Contribute
 
-Please make a PR and add your own suggestions to this file :)
+Please make a PR and add your own suggestions to this file :) It's best to add actual real world error messages from a real world use case.
 
 --- 
 
@@ -185,3 +185,37 @@ Web/FrontController.hs:18:3: error:
 </details>
 
 Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19098
+
+
+
+<details>
+  <summary>
+        <strong>HUX4: Perhaps you meant a :: Maybe Int ?</strong>
+  </summary>
+
+**Details:**
+Given this code:
+
+```haskell
+a :: Just Int
+a = Just 5
+```
+
+GHC errors with:
+
+```haskell
+Not in scope: type constructor or class 'Just'A data constructor of that name is in scope; did you mean DataKinds?
+```
+
+A better error message would be:
+
+```haskell
+Perhaps you meant a :: Maybe Int?
+Not in scope: type constructor or class 'Just'
+A data constructor of that name is in scope; did you mean DataKinds?
+```
+
+</details>
+
+Suggested on reddit: https://www.reddit.com/r/haskell/comments/kgvdon/improving_haskell_ghc_error_messages/gghjajf/?utm_source=reddit&utm_medium=web2x&context=3
+
