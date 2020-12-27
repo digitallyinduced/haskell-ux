@@ -220,3 +220,84 @@ A data constructor of that name is in scope; did you mean DataKinds?
 
 Suggested on reddit: https://www.reddit.com/r/haskell/comments/kgvdon/improving_haskell_ghc_error_messages/gghjajf/?utm_source=reddit&utm_medium=web2x&context=3
 
+
+
+
+<details>
+  <summary>
+        <strong>HUX5: Perhaps you want to use `pure`?</strong>
+  </summary>
+
+**Details:**
+Given this code:
+
+```haskell
+initModelContext :: FrameworkConfig -> IO ModelContext
+initModelContext FrameworkConfig { environment, dbPoolIdleTime, dbPoolMaxConnections, databaseUrl } = do
+    let isDevelopment = environment == Env.Development
+    modelContext <- (\modelContext -> modelContext { queryDebuggingEnabled = isDevelopment }) <$> createModelContext dbPoolIdleTime dbPoolMaxConnections databaseUrl
+    modelContext
+```
+
+GHC errors with:
+
+```haskell
+IHP/Server.hs:133:5: error:
+    • Couldn't match expected type ‘IO ModelContext’
+                  with actual type ‘ModelContext’
+    • In a stmt of a 'do' block: modelContext
+      In the expression:
+        do let isDevelopment = environment == Env.Development
+           modelContext <- (\ modelContext
+                              -> modelContext {queryDebuggingEnabled = isDevelopment})
+                             <$>
+                               createModelContext dbPoolIdleTime dbPoolMaxConnections databaseUrl
+           modelContext
+      In an equation for ‘initModelContext’:
+          initModelContext
+            FrameworkConfig {environment, dbPoolIdleTime, dbPoolMaxConnections,
+                             databaseUrl}
+            = do let isDevelopment = ...
+                 modelContext <- (\ modelContext
+                                    -> modelContext {queryDebuggingEnabled = isDevelopment})
+                                   <$>
+                                     createModelContext
+                                       dbPoolIdleTime dbPoolMaxConnections databaseUrl
+                 modelContext
+    |
+133 |     modelContext
+```
+
+A better error message would be:
+
+```haskell
+IHP/Server.hs:133:5: error:
+    • Perhaps you meant `pure modelContext`?
+    
+    Couldn't match expected type ‘IO ModelContext’
+                  with actual type ‘ModelContext’
+    • In a stmt of a 'do' block: modelContext
+      In the expression:
+        do let isDevelopment = environment == Env.Development
+           modelContext <- (\ modelContext
+                              -> modelContext {queryDebuggingEnabled = isDevelopment})
+                             <$>
+                               createModelContext dbPoolIdleTime dbPoolMaxConnections databaseUrl
+           modelContext
+      In an equation for ‘initModelContext’:
+          initModelContext
+            FrameworkConfig {environment, dbPoolIdleTime, dbPoolMaxConnections,
+                             databaseUrl}
+            = do let isDevelopment = ...
+                 modelContext <- (\ modelContext
+                                    -> modelContext {queryDebuggingEnabled = isDevelopment})
+                                   <$>
+                                     createModelContext
+                                       dbPoolIdleTime dbPoolMaxConnections databaseUrl
+                 modelContext
+    |
+133 |     modelContext
+```
+
+</details>
+
