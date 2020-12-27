@@ -2,9 +2,10 @@
   <a href="https://ihp.digitallyinduced.com/" target="_blank">
           <img src="https://www.haskell.org/img/haskell-logo.svg" width="420"/>
   </a>
+  <h1 align="center">Haskell UX: Let's Make Haskell's Error Messages Helpful</h1>
 </p>
 
-# Haskell UX: Let's Make Haskell's Error Messages Helpful
+
 
 Often GHC Haskell error messages are not helpful or confusing. This is a huge barrier to entry for people just adopting haskell.
 
