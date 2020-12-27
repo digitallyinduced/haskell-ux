@@ -20,11 +20,11 @@ Please make a PR and add your own suggestions to this file :)
 
 --- 
 
-### Haskell UX Improvement: 1
+# List of UX Improvements
 
 <details>
   <summary>
-        <strong>Type level lists with only a single element need a ' in front of the list. Prepend a ' like '["email]' to get it working.</strong>
+        <strong>HUX1: Type level lists with only a single element need a ' in front of the list. Prepend a ' like '["email]' to get it working.</strong>
   </summary>
   
 **Details:**
@@ -86,13 +86,9 @@ Web/Controller/Users.hs:16:23
 
 Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19096
 
-
-
-### Haskell UX Improvement: 2
-
 <details>
   <summary>
-        <strong>The let-expression is only indented 4 spaces from the do-statement, but it needs to be indented 8 spaces</strong>
+        <strong>HUX2: The let-expression is only indented 4 spaces from the do-statement, but it needs to be indented 8 spaces</strong>
   </summary>
 
 **Details:**
@@ -134,12 +130,9 @@ Admin/Controller/Events.hs:26:9: error:
 Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19097
 
 
-
-### Haskell UX Improvement: 3
-
 <details>
   <summary>
-        <strong>The call to `putContext` requires an implicit parameter `?context::ControllerContext` to be available. Change the type signature to this: fetchCategories :: (?modelContext::ModelContext, ?context :: ControllerContext) => IO ()</strong>
+        <strong>HUX3: The call to `putContext` requires an implicit parameter `?context::ControllerContext` to be available. Change the type signature to this: fetchCategories :: (?modelContext::ModelContext, ?context :: ControllerContext) => IO ()</strong>
   </summary>
 
 **Details:**
