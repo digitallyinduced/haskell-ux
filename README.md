@@ -1,5 +1,10 @@
-# Haskell UX
-Let's make haskells error messages helpful.
+<p align="center">
+  <a href="https://ihp.digitallyinduced.com/" target="_blank">
+          <img src="https://www.haskell.org/img/haskell-logo.svg" width="420"/>
+  </a>
+</p>
+
+# Haskell UX: Let's Make Haskell's Error Messages Helpful
 
 Often GHC Haskell error messages are not helpful or confusing. This is a huge barrier to entry for people just adopting haskell.
 
@@ -15,18 +20,14 @@ Please make a PR and add your own suggestions to this file :)
 
 --- 
 
-# Haskell UX Improvement: 1
+### Haskell UX Improvement: 1
 
-**Current:** 
-```haskell
-Expected a type, but "email"' has kind Symbol
-```
-**Better:**
-```haskell
-Type level lists with only a single element need a ' in front of the list. Prepend a ' like '["email]' to get it working.
-```
-
-## Details
+<details>
+  <summary>
+        <strong>Type level lists with only a single element need a ' in front of the list. Prepend a ' like '["email]' to get it working.</strong>
+  </summary>
+  
+**Details:**
 
 Given this code:
 
@@ -79,24 +80,22 @@ Web/Controller/Users.hs:16:23
 16 |             |> fill @["email"]
    |                       ^^^^^^^
 ```
+  
+</details>
 
 
-**Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19096**
+Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19096
 
 
 
-# Haskell UX Improvement: 2
+### Haskell UX Improvement: 2
 
-**Current:** 
-```haskell
-The last statement in a 'do' block must be an expression
-```
-**Better:**
-```haskell
-The let-expression is only indented 4 spaces from the do-statement, but it needs to be indented 8 spaces
-```
+<details>
+  <summary>
+        <strong>The let-expression is only indented 4 spaces from the do-statement, but it needs to be indented 8 spaces</strong>
+  </summary>
 
-## Details
+**Details:**
 Given this code:
 
 ```haskell
@@ -130,22 +129,20 @@ Admin/Controller/Events.hs:26:9: error:
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
 ```
 
-**Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19097**
+</details>
+
+Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19097
 
 
 
-# Haskell UX Improvement: 3
+### Haskell UX Improvement: 3
 
-**Current:** 
-```haskell
-Could not deduce: ?context::ControllerContext arising from a use of putContext' from the context: ?modelContext::ModelContext bound by the type signature for:
-```
-**Better:**
-```haskell
-The call to `putContext` requires an implicit parameter `?context::ControllerContext` to be available. Change the type signature to this: fetchCategories :: (?modelContext::ModelContext, ?context :: ControllerContext) => IO ()
-```
+<details>
+  <summary>
+        <strong>The call to `putContext` requires an implicit parameter `?context::ControllerContext` to be available. Change the type signature to this: fetchCategories :: (?modelContext::ModelContext, ?context :: ControllerContext) => IO ()</strong>
+  </summary>
 
-## Details
+**Details:**
 Given this code:
 ```haskell
 fetchCategories :: (?modelContext :: ModelContext) => IO ()
@@ -192,5 +189,6 @@ Web/FrontController.hs:18:3: error:
    |
 18 |   putContext categories
 ```
+</details>
 
-**Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19098**
+Reported to GHC via https://gitlab.haskell.org/ghc/ghc/-/issues/19098
