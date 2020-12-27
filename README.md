@@ -15,6 +15,9 @@ Let's collect these "bad" error messages here and suggest and improved error mes
 
 Good error messages should be **clear**, **actionable**, and **practical**. A great error message tells the user what went wrong and what the user needs to do to fix the problem. It should direct the user to the solution most likely needed.
 
+Inspiration:
+- https://mobile.twitter.com/jyothsnasrin/status/1037703436043603968
+
 ## Contribute
 
 Please make a PR and add your own suggestions to this file :) It's best to add actual real world error messages from a real world use case.
