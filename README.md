@@ -310,7 +310,8 @@ IHP/Server.hs:133:5: error:
 
 ## Better parsing error
 
-Great work by @guibou
+Great work by https://github.com/guibou
+
 PR: https://gitlab.haskell.org/ghc/ghc/-/merge_requests/4711
 
 
