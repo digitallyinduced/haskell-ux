@@ -304,3 +304,56 @@ IHP/Server.hs:133:5: error:
 
 </details>
 
+
+# Goodies that are being worked on at GHC
+
+
+## Better parsing error
+
+Great work by https://github.com/guibou
+
+PR: https://gitlab.haskell.org/ghc/ghc/-/merge_requests/4711
+
+
+> Was given the following error message when parsed with current GHC:
+
+```
+[1 of 1] Compiling Main             ( ParseErrorTest.hs, ParseErrorTest.o )
+
+ParseErrorTest.hs:6:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+  |
+6 | data Chicken = CotCotCot
+  | ^
+```
+
+> With this pull request, the error message is as following:
+
+```
+[1 of 1] Compiling Main             ( ParseErrorTest.hs, ParseErrorTest.o )
+
+ParseErrorTest.hs:1:17: error:
+    Parse error with context: Parsing error: please close this list.
+  |
+1 | foo x y z = bar [(x, y, z),
+  |                 ^
+
+ParseErrorTest.hs:2:13: error:
+    Parse error with context: Parsing error: please close this tuple brace.
+  |
+2 |             (y, x, z,
+  |             ^
+
+ParseErrorTest.hs:8:21: error:
+    Parse error with context: Parsing error: please close this brace.
+  |
+8 | bar a b c d = print ((a, b, c, d) + "hello"
+  |                     ^
+
+ParseErrorTest.hs:14:3: error:
+    Parse error with context: Parsing error: let/in clause without body. Please add a body.
+   |
+14 |   in
+   |   ^^
+```
+
