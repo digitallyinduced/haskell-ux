@@ -17,6 +17,7 @@ Good error messages should be **clear**, **actionable**, and **practical**. A gr
 
 Inspiration:
 - https://mobile.twitter.com/jyothsnasrin/status/1037703436043603968
+- https://github.com/elm/error-message-catalog
 
 ## Contribute
 
