@@ -305,6 +305,38 @@ IHP/Server.hs:133:5: error:
 
 </details>
 
+<details>
+  <summary>
+        <strong>HUX6: Type names must start with a capital letter</strong>
+  </summary>
+
+**Details:**
+Given this code:
+
+```haskell
+data continent = Continent
+-- or
+newtype continent = Continent
+```
+
+GHC errors with:
+
+```haskell
+<interactive>:3:6: error:
+    Malformed head of type or class declaration: continent
+```
+
+A better error message would be:
+
+```haskell
+IHP/Server.hs:133:5: error:
+    • Perhaps you meant `Continent`?
+    • Type names for `data` and `newtype` should always start with a capital letter.
+```
+
+</details>
+
+
 
 # Goodies that are being worked on at GHC
 
