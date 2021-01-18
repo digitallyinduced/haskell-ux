@@ -331,7 +331,7 @@ A better error message would be:
 ```haskell
 IHP/Server.hs:133:5: error:
     • Perhaps you meant `Continent`?
-    • Type names for `data` and `newtype` should always start with a capital letter.
+    • Type names for `data` and `newtype` must start with a capital letter.
 ```
 
 </details>
