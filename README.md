@@ -337,6 +337,36 @@ IHP/Server.hs:133:5: error:
 </details>
 
 
+<details>
+  <summary>
+        <strong>HUX7: Illegal .. notation for constructor LogOutView. The constructor has no labeled field</strong>
+  </summary>
+
+**Details:**
+Given this code:
+
+```haskell
+data LogOutView = LogOutView
+
+instance View LogOutView where
+    html LogOutView { .. } = [hsx||]
+```
+
+GHC errors with:
+
+```haskell
+Illegal .. notation for constructor LogOutView. The constructor has no labeled field
+```
+
+A better error message would be:
+
+```haskell
+The 'data LogOutView' has no fields, so you cannot use 'LogOutView { .. }' here. Perhaps remove the '{ .. }' here, or add some fields to 'data LogOutView'? 
+```
+
+</details>
+
+
 
 # Goodies that are being worked on at GHC
 
